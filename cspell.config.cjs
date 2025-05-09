@@ -7,5 +7,13 @@ module.exports = {
     ],
     words: [
         ...baseConfig.words,
+        'clob',
+        'foreignkey',
+        'mediumint',
+        'napi',
+        'notnull',
+        'nvarchar',
+        'primarykey',
+        'tinyint',
     ],
 };

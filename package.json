@@ -30,14 +30,14 @@
     "types": "src/index.ts",
     "scripts": {
         "compile": "prisma generate --no-hints && virmator compile",
-        "docs": "virmator docs",
+        "docs": "md-code README.md",
         "format": "virmator format",
         "lint": "virmator lint fix",
         "publish": "virmator publish npm run test:all",
         "test": "prisma generate && virmator test node",
-        "test:all": "npm run compile && concurrently --colors --kill-others-on-fail -c auto --names tests,spelling,format,docs,deps,lint \"npm run test\" \"npm run test:spelling\" \"npm run test:format\" \"npm run test:docs\" \"npm run test:deps\" \"npm run test:lint\"",
+        "test:all": "npm run compile && concurrently --colors --kill-others-on-fail -c auto --names tests,spelling,format,deps,docs,lint \"npm run test\" \"npm run test:spelling\" \"npm run test:format\" \"npm run test:deps\" \"npm run test:docs\" \"npm run test:lint\"",
         "test:deps": "virmator deps check",
-        "test:docs": "virmator docs check",
+        "test:docs": "md-code README.md --check",
         "test:format": "virmator format check",
         "test:lint": "virmator lint",
         "test:spelling": "virmator spellcheck"
@@ -81,7 +81,6 @@
         "prettier-plugin-sort-json": "^4.1.1",
         "prettier-plugin-toml": "^2.0.5",
         "prisma": "^6.7.0",
-        "typedoc": "^0.28.4",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.32.0",
         "virmator": "^13.15.1"

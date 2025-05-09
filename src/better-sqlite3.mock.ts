@@ -1,4 +1,4 @@
-import sqlite, {type Database} from 'better-sqlite3-multiple-ciphers';
+import Database from 'better-sqlite3-multiple-ciphers';
 import {existsSync} from 'node:fs';
 
 const databaseEncryptionSecret = 'secret key goes here';
@@ -20,10 +20,10 @@ export const testUser = {
     email: 'test@example.com',
 } as const;
 
-export function connectToDatabase(filePath: string): Database {
+export function connectToDatabase(filePath: string): Database.Database {
     initDatabase(filePath);
 
-    const database = sqlite(filePath, {});
+    const database = Database(filePath, {});
     database.pragma(`key='${databaseEncryptionSecret}'`);
 
     return database;
@@ -33,7 +33,7 @@ export function initDatabase(filePath: string) {
     if (existsSync(filePath)) {
         return;
     }
-    const database = sqlite(filePath, {});
+    const database = Database(filePath, {});
     database.pragma('journal_mode = WAL');
     database.pragma(`rekey='${databaseEncryptionSecret}'`);
     database.transaction(() => {
